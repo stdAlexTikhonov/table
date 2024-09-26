@@ -33,5 +33,3 @@ export function NxWelcome() {
       </div>
   );
 }
-
-export default NxWelcome;

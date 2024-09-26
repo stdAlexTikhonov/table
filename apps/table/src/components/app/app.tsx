@@ -1,7 +1,7 @@
 
 import './app.module.scss';
 
-import NxWelcome from '../nx/nx-welcome';
+import { NxWelcome } from '../nx';
 
 export function App() {
   return (
