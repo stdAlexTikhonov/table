@@ -1,13 +1,13 @@
 
 import styles from './app.module.scss';
 
-import { NxWelcome } from '../nx';
+import { Footer } from '../footer';
 
 export function App() {
   return (
     <div className={styles.root}>
       <div className={styles.main} />
-      <NxWelcome />
+      <Footer />
     </div>
   );
 }

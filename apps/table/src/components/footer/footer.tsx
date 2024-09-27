@@ -6,9 +6,9 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 
-import styles from './nx.module.scss';
+import styles from './footer.module.scss';
 
-export function NxWelcome() {
+export function Footer() {
   return (
       <div className={styles.container}>
         <p className={styles.love}>
