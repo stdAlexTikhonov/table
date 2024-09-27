@@ -1,11 +1,12 @@
 
-import './app.module.scss';
+import styles from './app.module.scss';
 
 import { NxWelcome } from '../nx';
 
 export function App() {
   return (
-    <div>
+    <div className={styles.root}>
+      <div className={styles.main} />
       <NxWelcome />
     </div>
   );
