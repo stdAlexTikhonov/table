@@ -8,8 +8,21 @@
 .main {
   flex-grow: 1;
   display: flex;
+
+}
+
+.container {
+  width: 1000px;
+  margin: auto;
 }
 
 .table {
-  margin: auto;
+  border: 1px solid;
+  border-collapse: collapse;
+  table-layout: fixed; // auto
+  width: 100%;
+}
+
+.td, .th {
+  border: 1px solid;
 }

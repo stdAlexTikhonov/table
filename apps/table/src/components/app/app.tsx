@@ -9,15 +9,22 @@ export function App() {
   return (
     <div className={styles.root}>
       <div className={styles.main}>
-        <table className={styles.table}>
-          <tbody>
-            {arr.map((item, index) => <tr key={`row-${index}`}>
-              {
-                arr.map((_, i) => <td key={`col-${i}`}>1</td>)
-              }
-            </tr>)}
-          </tbody>
-        </table>
+        <div className={styles.container}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                {arr.map((item, index) => <th className={styles.th} key={`col-${index}`}>col-{index}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {arr.map((item, index) => <tr key={`row-${index}`}>
+                {
+                  arr.map((_, i) => <td className={styles.td} key={`col-${i}`}>1</td>)
+                }
+              </tr>)}
+            </tbody>
+          </table>
+        </div>
       </div>
       <Footer />
     </div>
