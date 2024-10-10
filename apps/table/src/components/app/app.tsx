@@ -13,15 +13,19 @@ export function App() {
           <table className={styles.table}>
             <thead>
               <tr>
-                {arr.map((item, index) => <th className={styles.th} key={`col-${index}`}>col-{index}</th>)}
+                {
+                  arr.map((item, index) => <th className={styles.th} key={`col-${index}`}>col-{index}</th>)
+                }
               </tr>
             </thead>
             <tbody>
-              {arr.map((item, index) => <tr key={`row-${index}`}>
-                {
-                  arr.map((_, i) => <td className={styles.td} key={`col-${i}`}>1</td>)
-                }
-              </tr>)}
+              {
+                arr.map((item, index) => <tr key={`row-${index}`}>
+                  {
+                    arr.map((_, i) => <td className={styles.td} key={`col-${i}`}>1</td>)
+                  }
+                </tr>)
+              }
             </tbody>
           </table>
         </div>
