@@ -1,15 +1,19 @@
 
 import styles from './app.module.scss';
-
+import { faker } from '@faker-js/faker';
 import { Footer } from '../footer';
 
 export function App() {
-
+  const list = Object.keys(faker);
+  console.log(list);
+  const params = Object.keys(faker['person']);
+  console.log(params);
   const arr = Array(10).fill(0);
   return (
     <div className={styles.root}>
       <div className={styles.main}>
         <div className={styles.container}>
+          <input type="text" className={styles.input} />
           <table className={styles.table}>
             <thead>
               <tr>
@@ -22,7 +26,7 @@ export function App() {
               {
                 arr.map((item, index) => <tr key={`row-${index}`}>
                   {
-                    arr.map((_, i) => <td className={styles.td} key={`col-${i}`}>1</td>)
+                    arr.map((_, i) => <td className={styles.td} key={`col-${i}`}>{faker['person'].firstName()}</td>)
                   }
                 </tr>)
               }
