@@ -2,18 +2,15 @@
 import styles from './app.module.scss';
 import { faker } from '@faker-js/faker';
 import { Footer } from '../footer';
+import { Input } from '../Input';
 
 export function App() {
-  const list = Object.keys(faker);
-  console.log(list);
-  const params = Object.keys(faker['person']);
-  console.log(params);
   const arr = Array(10).fill(0);
   return (
     <div className={styles.root}>
       <div className={styles.main}>
         <div className={styles.container}>
-          <input type="text" className={styles.input} />
+          <Input />
           <table className={styles.table}>
             <thead>
               <tr>
