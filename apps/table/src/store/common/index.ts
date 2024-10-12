@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../const';
+import { NameSpace, Types } from '../const';
 
 
-interface CommonI { value: string }
+interface CommonI {
+  type: Types
+  value: string
+}
 
 
 const initialState: CommonI = {
+  type: Types.Default,
   value: ''
 };
 
@@ -14,7 +18,12 @@ export const common = createSlice({
   initialState,
   reducers: {
     setValue (state, action) {
-      state.value = action.payload;
+      if (action.payload.toLowerCase() === Types.Dataset) {
+        state.type = Types.Dataset
+        state.value = '';
+      } else {
+        state.value = action.payload;
+      }
     }
   }
 });
