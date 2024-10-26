@@ -25,7 +25,10 @@ export const common = createSlice({
   extraReducers: builder =>
     builder.addCase(setValue, (state, action) => {
       if (action.payload.toLowerCase() === Types.Dataset) {
-        state.type = Types.Dataset
+        state.type = Types.Dataset;
+        state.value = '';
+      } else if (action.payload.toLowerCase() === Types.Parameters) {
+        state.type = Types.Parameters;
         state.value = '';
       } else {
         state.value = action.payload;
