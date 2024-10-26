@@ -5,7 +5,7 @@ const value = (state: State) => state[NameSpace.Common].value;
 const actionType = (state: State) => state[NameSpace.Common].type;
 const datasets = (state: State) => state[NameSpace.Common].datasetlist;
 const dataset = (state: State) => state[NameSpace.Common].dataset;
-const parameters = (state: State) => state[NameSpace.Common].parameters;
+const columns = (state: State) => state[NameSpace.Common].columns;
 const length = (state: State) => state[NameSpace.Common].length;
 const data = (state: State) => state[NameSpace.Common].data;
 
@@ -14,7 +14,7 @@ export const commonSelectors = {
   actionType,
   datasets,
   dataset,
-  parameters,
+  columns,
   length,
   data
 }

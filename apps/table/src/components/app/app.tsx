@@ -7,7 +7,7 @@ import { useCommon } from '../../hooks';
 import { Types } from '../../store/const';
 
 export function App() {
-  const { actionType, datasets, handleSetDataset, parameters, data } = useCommon();
+  const { actionType, datasets, handleSetDataset, columns, data } = useCommon();
 
   return (
     <div className={styles.root}>
@@ -23,14 +23,14 @@ export function App() {
                     {
             actionType === Types.Parameters
               && <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                  {parameters.map(item => <div key={item} style={{ cursor: 'pointer' }}>{item}</div>)}
+                  {columns.map(item => <div key={item} style={{ cursor: 'pointer' }}>{item}</div>)}
                 </div>
           }
           <table className={styles.table}>
             <thead>
               <tr>
                 {
-                  parameters.map((item, index) => <th className={styles.th} key={`col-${index}`}>{item}</th>)
+                  columns.map((item, index) => <th className={styles.th} key={`col-${index}`}>{item}</th>)
                 }
               </tr>
             </thead>
@@ -38,7 +38,7 @@ export function App() {
               {
                 data.map((row, index) => <tr key={`row-${index}`}>
                   {
-                    parameters.map((param, i) => <td className={styles.td} key={`col-${i}`}>{row[param]}</td>)
+                    columns.map((param, i) => <td className={styles.td} key={`col-${i}`}>{row[param]}</td>)
                   }
                 </tr>)
               }

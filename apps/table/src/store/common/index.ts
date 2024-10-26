@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, Types } from '../const';
 import { setDataset, setValue } from './actions';
-import { Faker, faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
 
 interface CommonI {
@@ -10,7 +10,7 @@ interface CommonI {
   length: number
   dataset: string
   datasetlist: string[]
-  parameters: string[]
+  columns: string[]
   data: Record<string, string>[]
 }
 
@@ -18,9 +18,9 @@ interface CommonI {
 const initialState: CommonI = {
   type: Types.Default,
   value: '',
-  length: 0,
+  length: 10,
   dataset: '',
-  parameters: [],
+  columns: [],
   data: [],
   datasetlist: ['airline', 'animal', 'color', 'commerce', 'company', 'database', 'finance', 'food', 'git', 'hacker', 'image', 'internet', 'location', 'lorem', 'music', 'person', 'phone', 'science', 'system', 'vehicle', 'word']
 };
@@ -47,7 +47,7 @@ export const common = createSlice({
         state.type = Types.Default;
       } else if (action.payload.toLowerCase() === Types.Generate) {
         state.value = '';
-        state.data = Array.from({ length: state.length }, () => state.parameters.reduce((a, b) => ({ ...a, [b]: faker[state.dataset][b]() }), {}))
+        state.data = Array.from({ length: state.length }, () => state.columns.reduce((a, b) => ({ ...a, [b]: faker[state.dataset][b]() }), {}))
       } else if (action.payload.toLowerCase() === Types.Reset) {
         return initialState
       } else {
@@ -57,7 +57,7 @@ export const common = createSlice({
     .addCase(setDataset, (state, action) => {
       state.dataset = action.payload;
       const parameters = Object.keys(faker[action.payload]);
-      state.parameters = parameters.filter(param => param !== 'faker');
+      state.columns = parameters.filter(param => param !== 'faker');
       state.type = Types.Default;
     })
 });

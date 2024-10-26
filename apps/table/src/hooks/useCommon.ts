@@ -7,7 +7,7 @@ export const useCommon = () => {
   const actionType = useAppSelector(commonSelectors.actionType);
   const datasets = useAppSelector(commonSelectors.datasets);
   const dataset = useAppSelector(commonSelectors.dataset);
-  const parameters = useAppSelector(commonSelectors.parameters);
+  const columns = useAppSelector(commonSelectors.columns);
   const length = useAppSelector(commonSelectors.length);
   const data = useAppSelector(commonSelectors.data);
 
@@ -22,7 +22,7 @@ export const useCommon = () => {
     handleSetDataset,
     datasets,
     dataset,
-    parameters,
+    columns,
     length,
     data
   }
