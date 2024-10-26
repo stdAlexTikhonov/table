@@ -4,9 +4,9 @@ export const enum NameSpace {
 
 export enum Types {
   Dataset = 'dataset',
-  Parameters = 'parameters',
+  Parameters = 'columns',
   Length = 'length',
   Default = 'default',
   Generate = 'generate',
-  Reset = 'reset'
+  Reset = 'clear'
 }
