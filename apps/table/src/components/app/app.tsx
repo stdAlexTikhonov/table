@@ -1,6 +1,6 @@
 
 import styles from './app.module.scss';
-import { Faker, faker } from '@faker-js/faker';
+import { Faker } from '@faker-js/faker';
 import { Footer } from '../footer';
 import { Input } from '../Input';
 import { useCommon } from '../../hooks';
