@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, Types } from '../const';
-import { setDataset, setValue } from './actions';
+import { resetType, setDataset, setValue } from './actions';
 
 
 interface CommonI {
@@ -33,6 +33,10 @@ export const common = createSlice({
     })
     .addCase(setDataset, (state, action) => {
       state.dataset = action.payload;
+      state.type = Types.Default;
+    })
+    .addCase(resetType, (state) => {
+      state.type = Types.Default;
     })
 });
 

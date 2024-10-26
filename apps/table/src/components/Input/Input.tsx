@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import styles from './Input.module.scss';
 import { commonSelectors } from '../../store/common/selectors';
-import { setValue } from '../../store/common';
+import { setValue } from '../../store/common/actions';
 
 export const Input = () => {
   const dispatch = useAppDispatch();
