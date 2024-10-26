@@ -12,6 +12,7 @@ export const useCommon = () => {
   const data = useAppSelector(commonSelectors.data);
 
   const dispatch = useAppDispatch();
+
   const handleSetDataset = (val: keyof Faker) => {
     dispatch(setDataset(val));
   }

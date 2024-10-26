@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, Types } from '../const';
-import { resetType, setDataset, setValue } from './actions';
+import { setDataset, setValue } from './actions';
 import { Faker, faker } from '@faker-js/faker';
 
 
@@ -48,6 +48,8 @@ export const common = createSlice({
       } else if (action.payload.toLowerCase() === Types.Generate) {
         state.value = '';
         state.data = Array.from({ length: state.length }, () => state.parameters.reduce((a, b) => ({ ...a, [b]: faker[state.dataset][b]() }), {}))
+      } else if (action.payload.toLowerCase() === Types.Reset) {
+        return initialState
       } else {
         state.value = action.payload;
       }
@@ -56,9 +58,6 @@ export const common = createSlice({
       state.dataset = action.payload;
       const parameters = Object.keys(faker[action.payload]);
       state.parameters = parameters.filter(param => param !== 'faker');
-      state.type = Types.Default;
-    })
-    .addCase(resetType, (state) => {
       state.type = Types.Default;
     })
 });

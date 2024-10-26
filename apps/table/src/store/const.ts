@@ -7,5 +7,6 @@ export enum Types {
   Parameters = 'parameters',
   Length = 'length',
   Default = 'default',
-  Generate = 'generate'
+  Generate = 'generate',
+  Reset = 'reset'
 }
