@@ -8,6 +8,7 @@ export const useCommon = () => {
   const datasets = useAppSelector(commonSelectors.datasets);
   const dataset = useAppSelector(commonSelectors.dataset);
   const parameters = useAppSelector(commonSelectors.parameters);
+  const length = useAppSelector(commonSelectors.length);
 
   const dispatch = useAppDispatch();
   const handleSetDataset = (val: keyof Faker) => {
@@ -19,6 +20,7 @@ export const useCommon = () => {
     handleSetDataset,
     datasets,
     dataset,
-    parameters
+    parameters,
+    length
   }
 };

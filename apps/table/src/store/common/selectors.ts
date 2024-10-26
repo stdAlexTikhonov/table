@@ -6,11 +6,13 @@ const actionType = (state: State) => state[NameSpace.Common].type;
 const datasets = (state: State) => state[NameSpace.Common].datasetlist;
 const dataset = (state: State) => state[NameSpace.Common].dataset;
 const parameters = (state: State) => state[NameSpace.Common].parameters;
+const length = (state: State) => state[NameSpace.Common].length;
 
 export const commonSelectors = {
   value,
   actionType,
   datasets,
   dataset,
-  parameters
+  parameters,
+  length
 }
