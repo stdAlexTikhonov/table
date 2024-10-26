@@ -7,7 +7,7 @@ import { useCommon } from '../../hooks';
 import { Types } from '../../store/const';
 
 export function App() {
-  const { actionType, datasets, handleSetDataset, parameters } = useCommon();
+  const { actionType, datasets, handleSetDataset, parameters, data } = useCommon();
 
   return (
     <div className={styles.root}>
@@ -26,24 +26,24 @@ export function App() {
                   {parameters.map(item => <div key={item} style={{ cursor: 'pointer' }}>{item}</div>)}
                 </div>
           }
-          {/* <table className={styles.table}>
+          <table className={styles.table}>
             <thead>
               <tr>
                 {
-                  arr.map((item, index) => <th className={styles.th} key={`col-${index}`}>col-{index}</th>)
+                  parameters.map((item, index) => <th className={styles.th} key={`col-${index}`}>{item}</th>)
                 }
               </tr>
             </thead>
             <tbody>
               {
-                arr.map((item, index) => <tr key={`row-${index}`}>
+                data.map((row, index) => <tr key={`row-${index}`}>
                   {
-                    arr.map((_, i) => <td className={styles.td} key={`col-${i}`}>{faker['person'].firstName()}</td>)
+                    parameters.map((param, i) => <td className={styles.td} key={`col-${i}`}>{row[param]}</td>)
                   }
                 </tr>)
               }
             </tbody>
-          </table> */}
+          </table>
         </div>
       </div>
       <Footer />

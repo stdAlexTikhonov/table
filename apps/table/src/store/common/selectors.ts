@@ -7,6 +7,7 @@ const datasets = (state: State) => state[NameSpace.Common].datasetlist;
 const dataset = (state: State) => state[NameSpace.Common].dataset;
 const parameters = (state: State) => state[NameSpace.Common].parameters;
 const length = (state: State) => state[NameSpace.Common].length;
+const data = (state: State) => state[NameSpace.Common].data;
 
 export const commonSelectors = {
   value,
@@ -14,5 +15,6 @@ export const commonSelectors = {
   datasets,
   dataset,
   parameters,
-  length
+  length,
+  data
 }

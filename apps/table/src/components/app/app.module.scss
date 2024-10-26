@@ -12,14 +12,14 @@
 }
 
 .container {
-  width: 1000px;
+  width: 1500px;
   margin: auto;
 }
 
 .table {
   border: 1px solid;
   border-collapse: collapse;
-  table-layout: fixed; // auto
+  table-layout: auto; // fixed
   width: 100%;
 }
 
