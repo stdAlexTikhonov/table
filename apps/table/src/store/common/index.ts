@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, Types } from '../const';
 import { resetType, setDataset, setValue } from './actions';
+import { faker } from '@faker-js/faker';
 
 
 interface CommonI {
@@ -8,6 +9,7 @@ interface CommonI {
   value: string
   dataset: string
   datasetlist: string[]
+  parameters: string[]
 }
 
 
@@ -15,6 +17,7 @@ const initialState: CommonI = {
   type: Types.Default,
   value: '',
   dataset: '',
+  parameters: [],
   datasetlist: ['airline', 'animal', 'color', 'commerce', 'company', 'database', 'finance', 'food', 'git', 'hacker', 'image', 'internet', 'location', 'lorem', 'music', 'person', 'phone', 'science', 'system', 'vehicle', 'word']
 };
 
@@ -36,6 +39,8 @@ export const common = createSlice({
     })
     .addCase(setDataset, (state, action) => {
       state.dataset = action.payload;
+      const parameters = Object.keys(faker[action.payload]);
+      state.parameters = parameters.filter(param => param !== 'faker');
       state.type = Types.Default;
     })
     .addCase(resetType, (state) => {
