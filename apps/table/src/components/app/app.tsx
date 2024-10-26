@@ -9,8 +9,6 @@ import { Types } from '../../store/const';
 export function App() {
   const { actionType, datasets, handleSetDataset, parameters } = useCommon();
 
-  const arr = Array(10).fill(0);
-
   return (
     <div className={styles.root}>
       <div className={styles.main}>
@@ -28,7 +26,7 @@ export function App() {
                   {parameters.map(item => <div key={item} style={{ cursor: 'pointer' }}>{item}</div>)}
                 </div>
           }
-          <table className={styles.table}>
+          {/* <table className={styles.table}>
             <thead>
               <tr>
                 {
@@ -45,7 +43,7 @@ export function App() {
                 </tr>)
               }
             </tbody>
-          </table>
+          </table> */}
         </div>
       </div>
       <Footer />

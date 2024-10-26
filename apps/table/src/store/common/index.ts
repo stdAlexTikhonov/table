@@ -7,6 +7,7 @@ import { faker } from '@faker-js/faker';
 interface CommonI {
   type: Types
   value: string
+  length: number
   dataset: string
   datasetlist: string[]
   parameters: string[]
@@ -16,6 +17,7 @@ interface CommonI {
 const initialState: CommonI = {
   type: Types.Default,
   value: '',
+  length: 0,
   dataset: '',
   parameters: [],
   datasetlist: ['airline', 'animal', 'color', 'commerce', 'company', 'database', 'finance', 'food', 'git', 'hacker', 'image', 'internet', 'location', 'lorem', 'music', 'person', 'phone', 'science', 'system', 'vehicle', 'word']
@@ -33,6 +35,14 @@ export const common = createSlice({
       } else if (action.payload.toLowerCase() === Types.Parameters) {
         state.type = Types.Parameters;
         state.value = '';
+      } else if (action.payload.toLowerCase() === Types.Length) {
+        state.type = Types.Length;
+        state.value = '';
+      } else if (state.type === Types.Length && action.payload.at(-1) === ';') {
+        const val = parseInt(action.payload);
+        state.length = val;
+        state.value = '';
+        state.type = Types.Default;
       } else {
         state.value = action.payload;
       }

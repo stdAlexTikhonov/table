@@ -5,5 +5,6 @@ export const enum NameSpace {
 export enum Types {
   Dataset = 'dataset',
   Parameters = 'parameters',
+  Length = 'length',
   Default = 'default'
 }
