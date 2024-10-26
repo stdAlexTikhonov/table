@@ -5,12 +5,16 @@ import { NameSpace, Types } from '../const';
 interface CommonI {
   type: Types
   value: string
+  dataset: string
+  datasetlist: string[]
 }
 
 
 const initialState: CommonI = {
   type: Types.Default,
-  value: ''
+  value: '',
+  dataset: '',
+  datasetlist: ['airline', 'animal', 'color', 'commerce', 'company', 'database', 'finance', 'food', 'git', 'hacker', 'image', 'internet', 'location', 'lorem', 'music', 'person', 'phone', 'science', 'system', 'vehicle', 'word']
 };
 
 export const common = createSlice({
@@ -24,6 +28,9 @@ export const common = createSlice({
       } else {
         state.value = action.payload;
       }
+    },
+    setDataset (state, action) {
+      state.dataset = action.payload;
     }
   }
 });
