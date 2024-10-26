@@ -11,6 +11,15 @@ export const Input = () => {
     const val = e.target.value;
     dispatch(setValue(val));
   }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === 'Tab') {
+      e.preventDefault();
+      e.stopPropagation();
+      alert('Tab pressed');
+    }
+  }
+
   const value = useAppSelector(commonSelectors.value)
-  return <input type="text" value={value} onChange={handleChange} className={styles.root} />;
+  return <input type="text" value={value} onChange={handleChange} onKeyDown={handleKeyDown} className={styles.root} />;
 }
