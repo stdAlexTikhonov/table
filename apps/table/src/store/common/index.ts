@@ -34,6 +34,17 @@ export const common = createSlice({
       if (action.payload.toLowerCase() === Types.Dataset) {
         state.type = Types.Dataset;
         state.value = '';
+      } else if (state.type === Types.Dataset && action.payload.at(-1) === ';') {
+        state.dataset = action.payload.slice(0, -1);
+        if (state.datasetlist.includes(state.dataset)) {
+          const parameters = Object.keys(faker[state.dataset]);
+          state.columns = parameters.filter(param => param !== 'faker');
+          state.value = '';
+          state.type = Types.Default;
+        } else {
+          alert(`Dataset ${state.dataset} does not exist! Please try again!`)
+        }
+
       } else if (action.payload.toLowerCase() === Types.Parameters) {
         state.type = Types.Parameters;
         state.value = '';
