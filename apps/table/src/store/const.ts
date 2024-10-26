@@ -6,5 +6,6 @@ export enum Types {
   Dataset = 'dataset',
   Parameters = 'parameters',
   Length = 'length',
-  Default = 'default'
+  Default = 'default',
+  Generate = 'generate'
 }
