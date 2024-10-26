@@ -3,14 +3,22 @@ import styles from './app.module.scss';
 import { faker } from '@faker-js/faker';
 import { Footer } from '../footer';
 import { Input } from '../Input';
+import { useCommon } from '../../hooks';
+import { Types } from '../../store/const';
 
 export function App() {
+  const { actionType, datasets, handleSetDataset } = useCommon();
   const arr = Array(10).fill(0);
+
   return (
     <div className={styles.root}>
       <div className={styles.main}>
         <div className={styles.container}>
           <Input />
+          {actionType === Types.Dataset
+            && <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
+                {datasets.map(item => <div key={item} style={{ cursor: 'pointer' }} onClick={() => handleSetDataset(item)}>{item}</div>)}
+               </div>}
           <table className={styles.table}>
             <thead>
               <tr>
