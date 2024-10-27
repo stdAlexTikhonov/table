@@ -7,7 +7,7 @@ import { useCommon } from '../../hooks';
 import { Types } from '../../store/const';
 
 export function App() {
-  const { actionType, datasets, handleSetDataset, columns, data } = useCommon();
+  const { actionType, filtered, handleSetDataset, columns, data, value } = useCommon();
 
   return (
     <div className={styles.root}>
@@ -17,13 +17,13 @@ export function App() {
           {
             actionType === Types.Dataset
               && <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                  {datasets.map(item => <div key={item} style={{ cursor: 'pointer' }} onClick={() => handleSetDataset(item as keyof Faker)}>{item}</div>)}
+                  {filtered.map(item => <div key={item} style={{ cursor: 'pointer' }} onClick={() => handleSetDataset(item as keyof Faker)}>{item}</div>)}
                 </div>
           }
-                    {
+          {
             actionType === Types.Parameters
               && <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                  {columns.map(item => <div key={item} style={{ cursor: 'pointer' }}>{item}</div>)}
+                  {columns.filter(item => item.startsWith(value)).map(item => <div key={item} style={{ cursor: 'pointer' }}>{item}</div>)}
                 </div>
           }
           <table className={styles.table}>

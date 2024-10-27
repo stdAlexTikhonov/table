@@ -9,6 +9,7 @@ interface CommonI {
   value: string
   length: number
   dataset: string
+  filtered: string[]
   datasetlist: string[]
   columns: string[]
   data: Record<string, string>[]
@@ -22,6 +23,7 @@ const initialState: CommonI = {
   dataset: '',
   columns: [],
   data: [],
+  filtered: [],
   datasetlist: ['airline', 'animal', 'color', 'commerce', 'company', 'database', 'finance', 'food', 'git', 'hacker', 'image', 'internet', 'location', 'lorem', 'music', 'person', 'phone', 'science', 'system', 'vehicle', 'word']
 };
 
@@ -33,6 +35,7 @@ export const common = createSlice({
     builder.addCase(setValue, (state, action) => {
       if (action.payload.toLowerCase() === Types.Dataset) {
         state.type = Types.Dataset;
+        state.filtered = state.datasetlist;
         state.value = '';
       } else if (state.type === Types.Dataset && action.payload.at(-1) === ';') {
         state.dataset = action.payload.slice(0, -1);
@@ -40,6 +43,7 @@ export const common = createSlice({
           const parameters = Object.keys(faker[state.dataset]);
           state.columns = parameters.filter(param => param !== 'faker');
           state.value = '';
+          state.filtered = [];
           state.type = Types.Default;
         } else {
           alert(`Dataset ${state.dataset} does not exist! Please try again!`)
@@ -61,6 +65,9 @@ export const common = createSlice({
         state.data = Array.from({ length: state.length }, () => state.columns.reduce((a, b) => ({ ...a, [b]: faker[state.dataset][b]() }), {}))
       } else if (action.payload.toLowerCase() === Types.Reset) {
         return initialState
+      } else if (state.type === Types.Dataset) {
+        state.value = action.payload;
+        state.filtered = state.datasetlist.filter(item => state.value.length ? item.startsWith(state.value) : item);
       } else {
         state.value = action.payload;
       }

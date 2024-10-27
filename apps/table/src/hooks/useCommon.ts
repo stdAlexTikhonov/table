@@ -13,6 +13,7 @@ export const useCommon = () => {
   const length = useAppSelector(commonSelectors.length);
   const data = useAppSelector(commonSelectors.data);
   const value = useAppSelector(commonSelectors.value)
+  const filtered = useAppSelector(commonSelectors.filtered);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -43,6 +44,7 @@ export const useCommon = () => {
     data,
     value,
     handleChange,
-    handleKeyDown
+    handleKeyDown,
+    filtered
   }
 };
