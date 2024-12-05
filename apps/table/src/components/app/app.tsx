@@ -5,9 +5,10 @@ import { Footer } from '../footer';
 import { Input } from '../Input';
 import { useCommon } from '../../hooks';
 import { Types } from '../../store/const';
+import { BasicTable } from '../BasicTable/BasicTable';
 
 export function App() {
-  const { actionType, filtered, handleSetDataset, columns, data, value } = useCommon();
+  const { actionType, filtered, handleSetDataset, columns, value } = useCommon();
 
   return (
     <div className={styles.root}>
@@ -26,24 +27,7 @@ export function App() {
                   {columns.filter(item => item.startsWith(value)).map(item => <div key={item} style={{ cursor: 'pointer' }}>{item}</div>)}
                 </div>
           }
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                {
-                  columns.map((item, index) => <th className={styles.th} key={`col-${index}`}>{item}</th>)
-                }
-              </tr>
-            </thead>
-            <tbody>
-              {
-                data.map((row, index) => <tr key={`row-${index}`}>
-                  {
-                    columns.map((param, i) => <td className={styles.td} key={`col-${i}`}>{row[param]}</td>)
-                  }
-                </tr>)
-              }
-            </tbody>
-          </table>
+          <BasicTable />
         </div>
       </div>
       <Footer />

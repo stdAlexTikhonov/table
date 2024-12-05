@@ -1,0 +1,11 @@
+/* Your styles goes here. */
+.table {
+  border: 1px solid;
+  border-collapse: collapse;
+  table-layout: auto; // fixed
+  width: 100%;
+}
+
+.td, .th {
+  border: 1px solid;
+}
