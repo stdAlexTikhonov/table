@@ -1,23 +1,15 @@
 
 import styles from './app.module.scss';
 import { Footer } from '../footer';
-import { Input } from '../Input';
 
-import { BasicTable } from '../BasicTable/BasicTable';
-import { Parameters } from '../Parameters';
-import { Dataset } from '../Dataset';
+import { Generator } from '../Generator';
 
 export function App() {
 
   return (
     <div className={styles.root}>
       <div className={styles.main}>
-        <div className={styles.container}>
-          <Input />
-          <Dataset />
-          <Parameters />
-          <BasicTable />
-        </div>
+        <Generator />
       </div>
       <Footer />
     </div>
