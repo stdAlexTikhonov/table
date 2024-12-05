@@ -1,17 +1,22 @@
-
-import styles from './app.module.scss';
 import { Footer } from '../footer';
-
+import CssBaseline from '@mui/material/CssBaseline';
 import { Generator } from '../Generator';
+import { AppBar } from '../AppBar';
+import { Box } from '@mui/material';
+import React from 'react';
+import { Input } from '../Input';
 
 export function App() {
-
-  return (
-    <div className={styles.root}>
-      <div className={styles.main}>
+  return (<>
+    <CssBaseline />
+    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <AppBar />
+      <Box sx={{ flexGrow: 1, overflow: 'auto'}}>
         <Generator />
-      </div>
+      </Box>
+      <Input />
       <Footer />
-    </div>
+    </Box>
+    </>
   );
 }
