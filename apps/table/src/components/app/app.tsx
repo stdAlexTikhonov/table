@@ -1,22 +1,14 @@
-import { Footer } from '../footer';
-import CssBaseline from '@mui/material/CssBaseline';
+import { Routes, Route } from 'react-router-dom';
+import { Wrapper } from '../Wrapper';
 import { Generator } from '../Generator';
-import { AppBar } from '../AppBar';
-import { Box } from '@mui/material';
-import React from 'react';
-import { Input } from '../Input';
+import { NoMatch } from './NoMatch';
 
 export function App() {
-  return (<>
-    <CssBaseline />
-    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <AppBar />
-      <Box sx={{ flexGrow: 1, overflow: 'auto'}}>
-        <Generator />
-      </Box>
-      <Input />
-      <Footer />
-    </Box>
-    </>
-  );
+  return (<Routes>
+     <Route path={`/`} element={<Wrapper />}>
+      <Route index element={<Generator />} />
+      <Route path='*' element={<NoMatch />} />
+     </Route>
+     <Route path='*' element={<NoMatch />} />
+  </Routes>);
 }
