@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -19,23 +18,18 @@ export const Drawer = () => {
     setOpen(newOpen);
   };
 
+  const examples = [
+    'Generator','Basic', 'ColumnSettings', 'Compound',
+    'CustomCells', 'ExpandedUserComponent', 'CutomRow', 'CustomRowColors', 'RowId', 'Editable',
+    'ExpandedRows', 'Filters', 'Footer', 'GlobalFilter', 'Groups', 'HorizontalCompound',
+    'InfinityScroll', 'Loading', 'Paggination', 'RowSelection', 'Size', 'Translation', 'WithoutHeader'
+
+  ]
+
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {examples.map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
