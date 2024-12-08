@@ -10,6 +10,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { examples, titles } from './utils';
 
 export const Drawer = () => {
   const [open, setOpen] = React.useState(false);
@@ -18,24 +19,16 @@ export const Drawer = () => {
     setOpen(newOpen);
   };
 
-  const examples = [
-    'Generator','Basic', 'ColumnSettings', 'Compound',
-    'CustomCells', 'ExpandedUserComponent', 'CutomRow', 'CustomRowColors', 'RowId', 'Editable',
-    'ExpandedRows', 'Filters', 'Footer', 'GlobalFilter', 'Groups', 'HorizontalCompound',
-    'InfinityScroll', 'Loading', 'Paggination', 'RowSelection', 'Size', 'Translation', 'WithoutHeader'
-
-  ]
-
   const DrawerList = (
     <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {examples.map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {examples.map((item, index) => (
+          <ListItem key={item} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={titles[item]} />
             </ListItemButton>
           </ListItem>
         ))}

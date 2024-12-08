@@ -3,7 +3,7 @@ import { Wrapper } from '../Wrapper';
 import { Generator } from '../Generator';
 import { NoMatch } from './NoMatch';
 
-export function App() {
+export const App = () => {
   return (<Routes>
      <Route path={`/`} element={<Wrapper />}>
       <Route index element={<Generator />} />
