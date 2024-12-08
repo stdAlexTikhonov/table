@@ -11,7 +11,7 @@ export function Wrapper() {
     <CssBaseline />
     <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       <AppBar />
-      <Box sx={{ flexGrow: 1, overflow: 'auto'}}>
+      <Box sx={{ flexGrow: 1, overflow: 'auto', display: 'flex' }}>
         <Outlet />
       </Box>
       <Input />
