@@ -1,3 +1,8 @@
+import { green, amber, blue, brown, common, cyan, orange, indigo, lime, pink, purple, red, teal, yellow } from '@mui/material/colors';
+import * as Icons from "@mui/icons-material";
+
+export const icons = Object.keys(Icons);
+
 export enum Examples {
   Generator = 'generator',
   Basic = "basic",
@@ -51,3 +56,5 @@ export const titles: Record<Examples, string> = {
   "translation": "Translation",
   "withoutheader": "WithoutHeader"
 };
+
+export const colors = [green, amber, blue, brown, common, cyan, orange, indigo, lime, pink, purple, red, teal, yellow];

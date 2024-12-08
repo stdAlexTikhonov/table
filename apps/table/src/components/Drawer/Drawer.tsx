@@ -8,10 +8,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { examples, titles } from './utils';
+import { examples, titles, icons, colors } from './utils';
 import * as Icons from "@mui/icons-material";
 
-const values = Object.keys(Icons);
+
 
 export const Drawer = () => {
   const [open, setOpen] = React.useState(false);
@@ -23,13 +23,13 @@ export const Drawer = () => {
   const DrawerList = (
     <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {examples.map((item, index) => {
-          const Icon = Icons[values[Math.floor(Math.random() * (values.length - 1))]]
+        {examples.map((item) => {
+          const Icon = Icons[icons[Math.floor(Math.random() * icons.length)]]
           return (
             <ListItem key={item} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <Icon />
+                  <Icon sx={{ color: colors[Math.floor(Math.random() * colors.length)][500]}} />
                 </ListItemIcon>
                 <ListItemText primary={titles[item]} />
               </ListItemButton>
