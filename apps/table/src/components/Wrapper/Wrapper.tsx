@@ -3,14 +3,15 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Outlet } from 'react-router-dom';
 import { AppBar } from '../AppBar';
 import { Box, Container } from '@mui/material';
-import React from 'react';
+
+import styles from './Wrapper.module.scss';
 
 export function Wrapper() {
   return (<>
     <CssBaseline />
-    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <Box className={styles.root}>
       <AppBar />
-        <Container style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }} maxWidth='xl'>
+        <Container className={styles.container} maxWidth='xl'>
           <Outlet />
         </Container>
       <Footer />
