@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { examples, titles, icons, colors } from './utils';
 import * as Icons from "@mui/icons-material";
+import { Link } from 'react-router-dom';
 
 
 
@@ -27,12 +28,14 @@ export const Drawer = () => {
           const Icon = Icons[icons[Math.floor(Math.random() * icons.length)]]
           return (
             <ListItem key={item} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon sx={{ color: colors[Math.floor(Math.random() * colors.length)][500]}} />
-                </ListItemIcon>
-                <ListItemText primary={titles[item]} />
-              </ListItemButton>
+              <Link to={`/${item}`}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon sx={{ color: colors[Math.floor(Math.random() * colors.length)][500]}} />
+                  </ListItemIcon>
+                  <ListItemText primary={titles[item]} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           )
         })}
