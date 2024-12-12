@@ -38,9 +38,9 @@ export const Basic = () => {
       }
     };
 
-    if (isMobile) window.addEventListener("orientationchange", handleOrientation, false);
+    if (isMobile) window.addEventListener("resize", handleOrientation, false);
     return () => {
-      if (isMobile) window.removeEventListener('orientationchange', handleOrientation);
+      if (isMobile) window.removeEventListener('resize', handleOrientation);
     }
   }, []);
 
