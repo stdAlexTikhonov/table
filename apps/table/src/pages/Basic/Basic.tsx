@@ -22,8 +22,8 @@ export const Basic = () => {
 
   return (<div className={styles.wrapper}>
       <div className={styles.toolbar}>
-        {!isMobile && <IconButton size='small' color='secondary' onClick={handleClickH}><MoneyIcon /></IconButton>}
-        <IconButton size='small' color='success' onClick={handleClickF}><ViewColumnIcon /></IconButton>
+        {!isMobile && <IconButton size='small' color={handred ? 'primary' : 'default'} onClick={handleClickH}><MoneyIcon /></IconButton>}
+        <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClickF}><ViewColumnIcon /></IconButton>
       </div>
       <div style={{ flexGrow: 1, height: 0 }}>
         <div className={styles.root}>
