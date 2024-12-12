@@ -2,6 +2,7 @@ import { Faker } from "@faker-js/faker/.";
 import { useAppDispatch, useAppSelector } from ".";
 import { setDataset, setValue } from "../store/common/actions";
 import { commonSelectors } from "../store/common/selectors";
+import { useEffect } from "react";
 
 export const useCommon = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +15,11 @@ export const useCommon = () => {
   const data = useAppSelector(commonSelectors.data);
   const value = useAppSelector(commonSelectors.value)
   const filtered = useAppSelector(commonSelectors.filtered);
+
+  useEffect(() => {
+    dispatch(setDataset('person'));
+    dispatch(setValue('generate'));
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;

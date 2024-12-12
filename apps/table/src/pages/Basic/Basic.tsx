@@ -12,18 +12,22 @@ export const Basic = () => {
   const len = columns.length;
   const [handred, setHandred] = useState(false);
   const [fixed, setFixed] = useState(false);
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  const pcwidth = (len < 10 || handred) ? '100%' : `${len * 10}%`;
+  const mobilewidth = `${len * 50}%`;
 
   const handleClickH = () => setHandred(prev => !prev);
   const handleClickF = () => setFixed(prev => !prev);
 
   return (<div className={styles.wrapper}>
       <div className={styles.toolbar}>
-        <IconButton size='small' color='secondary' onClick={handleClickH}><MoneyIcon /></IconButton>
+        {!isMobile && <IconButton size='small' color='secondary' onClick={handleClickH}><MoneyIcon /></IconButton>}
         <IconButton size='small' color='success' onClick={handleClickF}><ViewColumnIcon /></IconButton>
       </div>
       <div style={{ flexGrow: 1, height: 0 }}>
         <div className={styles.root}>
-          <table className={styles.table} style={{ width: (len < 10 || handred) ? '100%' : `${len * 10}%`, tableLayout: fixed ? 'fixed' : 'auto' }}>
+          <table className={styles.table} style={{ width: isMobile ? mobilewidth : pcwidth, tableLayout: fixed ? 'fixed' : 'auto' }}>
             <thead>
               <tr>
                 {

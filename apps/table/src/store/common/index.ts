@@ -19,7 +19,7 @@ interface CommonI {
 const initialState: CommonI = {
   type: Types.Default,
   value: '',
-  length: 10,
+  length: 15,
   dataset: '',
   columns: [],
   data: [],
