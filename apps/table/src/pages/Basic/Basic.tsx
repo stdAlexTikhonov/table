@@ -5,6 +5,7 @@ import styles from './Basic.module.scss';
 import { IconButton } from "@mui/material";
 import MoneyIcon from '@mui/icons-material/Money';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
+import { SelectCount } from "./components";
 
 
 export const Basic = () => {
@@ -46,8 +47,9 @@ export const Basic = () => {
 
   return (<div className={styles.wrapper}>
       <div className={styles.toolbar}>
-        {!isMobile && <IconButton size='small' color={handred ? 'primary' : 'default'} onClick={handleClickH}><MoneyIcon /></IconButton>}
+        <IconButton size='small' color={handred ? 'primary' : 'default'} onClick={handleClickH}><MoneyIcon /></IconButton>
         <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClickF}><ViewColumnIcon /></IconButton>
+        <SelectCount fixed={fixed} />
       </div>
       <div style={{ flexGrow: 1, height: 0 }}>
         <div className={styles.root}>
