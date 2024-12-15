@@ -5,17 +5,18 @@ import styles from './Basic.module.scss';
 import { IconButton } from "@mui/material";
 import MoneyIcon from '@mui/icons-material/Money';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
+import { SelectCount } from "./components";
 
 
 export const Basic = () => {
-  const { columns, data } = useCommon();
+  const { columns, data, count, handleSetCount } = useCommon();
   const len = columns.length;
   const [handred, setHandred] = useState(false);
   const [fixed, setFixed] = useState(false);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  const pcwidth = (len < 10 || handred) ? '100%' : `${len * 10}%`;
-  const mobilewidth = `${len * 50}%`;
+  const pcwidth = (len < 10 || handred) ? '100%' : `${len * (100/count)}%`;
+  const mobilewidth = `${len * (100/count)}%`;
 
   const handleClickH = () => setHandred(prev => !prev);
   const handleClickF = () => setFixed(prev => !prev);
@@ -24,14 +25,12 @@ export const Basic = () => {
     const handleOrientation = () => {
       switch (screen.orientation.type) {
         case "landscape-primary":
-          alert("That looks good.");
-          break;
         case "landscape-secondary":
-          alert("Mmm… the screen is upside down!");
+          handleSetCount(4);
           break;
         case "portrait-secondary":
         case "portrait-primary":
-          alert("Mmm… you should rotate your device to landscape");
+          handleSetCount(2);
           break;
         default:
           alert("The orientation API isn't supported in this browser :(");
@@ -46,8 +45,9 @@ export const Basic = () => {
 
   return (<div className={styles.wrapper}>
       <div className={styles.toolbar}>
-        {!isMobile && <IconButton size='small' color={handred ? 'primary' : 'default'} onClick={handleClickH}><MoneyIcon /></IconButton>}
+        <IconButton size='small' color={handred ? 'primary' : 'default'} disabled={isMobile} onClick={handleClickH}><MoneyIcon /></IconButton>
         <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClickF}><ViewColumnIcon /></IconButton>
+        <SelectCount fixed={fixed} />
       </div>
       <div style={{ flexGrow: 1, height: 0 }}>
         <div className={styles.root}>

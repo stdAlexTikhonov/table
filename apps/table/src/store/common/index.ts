@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, Types } from '../const';
-import { setDataset, setValue } from './actions';
+import { setCount, setDataset, setValue } from './actions';
 import { faker } from '@faker-js/faker';
 
 
 interface CommonI {
+  count: number
   type: Types
   value: string
   length: number
@@ -18,6 +19,7 @@ interface CommonI {
 
 const initialState: CommonI = {
   type: Types.Default,
+  count: 10,
   value: '',
   length: 20,
   dataset: '',
@@ -77,6 +79,9 @@ export const common = createSlice({
       const parameters = Object.keys(faker[action.payload]);
       state.columns = parameters.filter(param => param !== 'faker');
       state.type = Types.Default;
+    })
+    .addCase(setCount, (state, action) => {
+      state.count = action.payload;
     })
 });
 

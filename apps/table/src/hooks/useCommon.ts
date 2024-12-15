@@ -1,6 +1,6 @@
 import { Faker } from "@faker-js/faker/.";
 import { useAppDispatch, useAppSelector } from ".";
-import { setDataset, setValue } from "../store/common/actions";
+import { setCount, setDataset, setValue } from "../store/common/actions";
 import { commonSelectors } from "../store/common/selectors";
 import { useEffect } from "react";
 
@@ -15,6 +15,7 @@ export const useCommon = () => {
   const data = useAppSelector(commonSelectors.data);
   const value = useAppSelector(commonSelectors.value)
   const filtered = useAppSelector(commonSelectors.filtered);
+  const count = useAppSelector(commonSelectors.count);
 
   useEffect(() => {
     dispatch(setDataset('person'));
@@ -34,7 +35,9 @@ export const useCommon = () => {
     }
   }
 
-
+  const handleSetCount = (val: number) => {
+    dispatch(setCount(val));
+  }
 
   const handleSetDataset = (val: keyof Faker) => {
     dispatch(setDataset(val));
@@ -51,6 +54,8 @@ export const useCommon = () => {
     value,
     handleChange,
     handleKeyDown,
-    filtered
+    filtered,
+    count,
+    handleSetCount
   }
 };
