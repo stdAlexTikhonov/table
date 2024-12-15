@@ -9,7 +9,7 @@ import { SelectCount } from "./components";
 
 
 export const Basic = () => {
-  const { columns, data, count } = useCommon();
+  const { columns, data, count, handleSetCount } = useCommon();
   const len = columns.length;
   const [handred, setHandred] = useState(false);
   const [fixed, setFixed] = useState(false);
@@ -25,14 +25,12 @@ export const Basic = () => {
     const handleOrientation = () => {
       switch (screen.orientation.type) {
         case "landscape-primary":
-          alert("That looks good.");
-          break;
         case "landscape-secondary":
-          alert("Mmm… the screen is upside down!");
+          handleSetCount(4);
           break;
         case "portrait-secondary":
         case "portrait-primary":
-          alert("Mmm… you should rotate your device to landscape");
+          handleSetCount(2);
           break;
         default:
           alert("The orientation API isn't supported in this browser :(");
@@ -47,7 +45,7 @@ export const Basic = () => {
 
   return (<div className={styles.wrapper}>
       <div className={styles.toolbar}>
-        <IconButton size='small' color={handred ? 'primary' : 'default'} onClick={handleClickH}><MoneyIcon /></IconButton>
+        <IconButton size='small' color={handred ? 'primary' : 'default'} disabled={isMobile} onClick={handleClickH}><MoneyIcon /></IconButton>
         <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClickF}><ViewColumnIcon /></IconButton>
         <SelectCount fixed={fixed} />
       </div>
