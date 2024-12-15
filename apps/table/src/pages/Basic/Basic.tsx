@@ -9,14 +9,14 @@ import { SelectCount } from "./components";
 
 
 export const Basic = () => {
-  const { columns, data } = useCommon();
+  const { columns, data, count } = useCommon();
   const len = columns.length;
   const [handred, setHandred] = useState(false);
   const [fixed, setFixed] = useState(false);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  const pcwidth = (len < 10 || handred) ? '100%' : `${len * 10}%`;
-  const mobilewidth = `${len * 50}%`;
+  const pcwidth = (len < 10 || handred) ? '100%' : `${len * (100/count)}%`;
+  const mobilewidth = `${len * (100/count)}%`;
 
   const handleClickH = () => setHandred(prev => !prev);
   const handleClickF = () => setFixed(prev => !prev);

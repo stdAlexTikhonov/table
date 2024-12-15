@@ -3,9 +3,10 @@ import Popover from '@mui/material/Popover';
 import IconButton from '@mui/material/IconButton';
 
 import styles from './SelectCount.module.scss';
-import { useState } from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { useCommon } from "../../../hooks";
+
 
 interface Props {
   fixed: boolean
@@ -13,7 +14,7 @@ interface Props {
 
 export const SelectCount = ({ fixed }: Props) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const [count, setCount] = useState(2);
+  const { count, handleSetCount } = useCommon();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -28,7 +29,7 @@ export const SelectCount = ({ fixed }: Props) => {
 
   return (
     <div>
-      <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClick} className={styles.count}>{count + 1}</IconButton>
+      <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClick} className={styles.count}>{count}</IconButton>
       <Popover
         id={id}
         open={open}
@@ -41,7 +42,7 @@ export const SelectCount = ({ fixed }: Props) => {
       >
         <ButtonGroup aria-label="Count columns" orientation='vertical'>
           {
-            Array(10).fill(0).map((_, i) => i > 0 ? <Button size='small' variant={i === count ? 'contained' : 'outlined'} key={i} onClick={() => setCount(i)}>{i + 1}</Button> : null)
+            Array(10).fill(0).map((_, i) => i > 0 ? <Button size='small' variant={i === count - 1 ? 'contained' : 'outlined'} key={i} onClick={() => handleSetCount(i + 1)}>{i + 1}</Button> : null)
           }
         </ButtonGroup>
       </Popover>
