@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useCommon } from "../../hooks";
 
 import styles from './Basic.module.scss';
-import { IconButton } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import Badge from '@mui/material/Badge';
 import MoneyIcon from '@mui/icons-material/Money';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
-import { SelectCount } from "./components";
 
 
 export const Basic = () => {
@@ -19,7 +19,27 @@ export const Basic = () => {
   const mobilewidth = `${len * (100/count)}%`;
 
   const handleClickH = () => setHandred(prev => !prev);
-  const handleClickF = () => setFixed(prev => !prev);
+  const handleClickF = () => {
+    if (handred && !fixed) {
+      handleSetCount(10);
+      setFixed(true);
+    } else if (handred && fixed) {
+      setFixed(false);
+    } else if (!fixed) {
+      handleSetCount(2);
+      setFixed(true);
+    } else if (count === 2) {
+      handleSetCount(4);
+    } else if (count === 4) {
+      handleSetCount(6);
+    } else if (count === 6) {
+      handleSetCount(8);
+    } else if (count === 8) {
+      handleSetCount(10);
+    } else if (count === 10) {
+      setFixed(false);
+    }
+  };
 
   useEffect(() => {
     const handleOrientation = () => {
@@ -46,8 +66,9 @@ export const Basic = () => {
   return (<div className={styles.wrapper}>
       <div className={styles.toolbar}>
         <IconButton size='small' color={handred ? 'primary' : 'default'} disabled={isMobile} onClick={handleClickH}><MoneyIcon /></IconButton>
-        <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClickF}><ViewColumnIcon /></IconButton>
-        <SelectCount fixed={fixed} />
+        <Badge badgeContent={fixed ? count : null} color="primary">
+          <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClickF}><ViewColumnIcon /></IconButton>
+        </Badge>
       </div>
       <div style={{ flexGrow: 1, height: 0 }}>
         <div className={styles.root}>
