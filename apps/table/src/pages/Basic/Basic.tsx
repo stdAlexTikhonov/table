@@ -4,7 +4,6 @@ import { useCommon } from "../../hooks";
 import styles from './Basic.module.scss';
 import IconButton from "@mui/material/IconButton";
 import Badge from '@mui/material/Badge';
-import MoneyIcon from '@mui/icons-material/Money';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 
 
@@ -15,16 +14,13 @@ export const Basic = () => {
   const [fixed, setFixed] = useState(false);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  const pcwidth = (len < 10 || handred) ? '100%' : `${len * (100/count)}%`;
-  const mobilewidth = `${len * (100/count)}%`;
+  const width = (len < 10 || handred) ? '100%' : `${len * (100/count)}%`;
 
-  const handleClickH = () => setHandred(prev => !prev);
-  const handleClickF = () => {
-    if (handred && !fixed) {
-      handleSetCount(10);
-      setFixed(true);
-    } else if (handred && fixed) {
+  const handleClick = () => {
+    if (handred && fixed) {
       setFixed(false);
+    } else if (handred) {
+      setHandred(false);
     } else if (!fixed) {
       handleSetCount(2);
       setFixed(true);
@@ -37,7 +33,7 @@ export const Basic = () => {
     } else if (count === 8) {
       handleSetCount(10);
     } else if (count === 10) {
-      setFixed(false);
+      setHandred(true);
     }
   };
 
@@ -65,14 +61,13 @@ export const Basic = () => {
 
   return (<div className={styles.wrapper}>
       <div className={styles.toolbar}>
-        <IconButton size='small' color={handred ? 'primary' : 'default'} disabled={isMobile} onClick={handleClickH}><MoneyIcon /></IconButton>
-        <Badge badgeContent={fixed ? count : null} color="primary">
-          <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClickF}><ViewColumnIcon /></IconButton>
+        <Badge badgeContent={fixed || handred ? handred ? len : count : null} color="primary">
+          <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClick}><ViewColumnIcon /></IconButton>
         </Badge>
       </div>
       <div style={{ flexGrow: 1, height: 0 }}>
         <div className={styles.root}>
-          <table className={styles.table} style={{ width: isMobile ? mobilewidth : pcwidth, tableLayout: fixed ? 'fixed' : 'auto' }}>
+          <table className={styles.table} style={{ width, tableLayout: fixed ? 'fixed' : 'auto' }}>
             <thead>
               <tr>
                 {
