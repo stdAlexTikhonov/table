@@ -5,37 +5,35 @@ import styles from './Basic.module.scss';
 import IconButton from "@mui/material/IconButton";
 import Badge from '@mui/material/Badge';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
+import MoneyIcon from "@mui/icons-material/Money";
 
 
 export const Basic = () => {
   const { columns, data, count, handleSetCount } = useCommon();
   const len = columns.length;
-  const [handred, setHandred] = useState(false);
+  const [hundred, setHundred] = useState(false);
   const [fixed, setFixed] = useState(false);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  const width = (len < 10 || handred) ? '100%' : `${len * (100/count)}%`;
+  const width = (len < 10 || hundred) ? '100%' : `${len * (100/count)}%`;
 
   const handleClick = () => {
-    if (handred && fixed) {
-      setFixed(false);
-    } else if (handred) {
-      setHandred(false);
-    } else if (!fixed) {
-      handleSetCount(2);
+    if (!fixed) {
+      handleSetCount(len);
       setFixed(true);
-    } else if (count === 2) {
-      handleSetCount(4);
-    } else if (count === 4) {
-      handleSetCount(6);
-    } else if (count === 6) {
-      handleSetCount(8);
-    } else if (count === 8) {
+    } else if (count === len) {
       handleSetCount(10);
-    } else if (count === 10) {
-      setHandred(true);
+    } else if (count > 2) {
+      handleSetCount(count - 2);
+    } else {
+      handleSetCount(len);
+      setFixed(false);
     }
   };
+
+  const handleHundred = () => {
+    setHundred(prev => !prev);
+  }
 
   useEffect(() => {
     const handleOrientation = () => {
@@ -61,8 +59,9 @@ export const Basic = () => {
 
   return (<div className={styles.wrapper}>
       <div className={styles.toolbar}>
-        <Badge badgeContent={fixed || handred ? handred ? len : count : null} color="primary">
-          <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClick}><ViewColumnIcon /></IconButton>
+        <Badge badgeContent={fixed && !hundred ? count : null} color="primary">
+          <IconButton size='small' color={hundred ? 'primary' : 'default'} onClick={handleHundred}><MoneyIcon /></IconButton>
+          <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClick} disabled={hundred}><ViewColumnIcon /></IconButton>
         </Badge>
       </div>
       <div style={{ flexGrow: 1, height: 0 }}>
