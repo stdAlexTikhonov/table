@@ -19,16 +19,18 @@ export const Basic = () => {
 
   const handleClick = () => {
     if (!fixed) {
-      handleSetCount(len);
-      setFixed(true);
-    } else if (count === len) {
       handleSetCount(10);
+      setFixed(true);
     } else if (count > 2) {
       handleSetCount(count - 2);
     } else {
-      handleSetCount(len);
+      handleSetCount(10);
       setFixed(false);
     }
+  };
+
+  const handleClick2 = () => {
+   setFixed(prev => !prev);
   };
 
   const handleHundred = () => {
@@ -61,7 +63,7 @@ export const Basic = () => {
       <div className={styles.toolbar}>
         <Badge badgeContent={fixed && !hundred ? count : null} color="primary">
           <IconButton size='small' color={hundred ? 'primary' : 'default'} onClick={handleHundred}><MoneyIcon /></IconButton>
-          <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={handleClick} disabled={hundred}><ViewColumnIcon /></IconButton>
+          <IconButton size='small' color={fixed ? 'primary' : 'default'} onClick={hundred ? handleClick2 : handleClick}><ViewColumnIcon /></IconButton>
         </Badge>
       </div>
       <div style={{ flexGrow: 1, height: 0 }}>
