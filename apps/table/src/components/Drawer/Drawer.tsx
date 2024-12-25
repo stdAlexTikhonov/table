@@ -28,7 +28,7 @@ export const Drawer = () => {
           const Icon = Icons[icons[Math.floor(Math.random() * icons.length)]]
           return (
             <ListItem key={item} disablePadding>
-              <Link to={`/${item}`}>
+              <Link to={`/table/${item}`}>
                 <ListItemButton>
                   <ListItemIcon>
                     <Icon sx={{ color: colors[Math.floor(Math.random() * colors.length)][500]}} />

@@ -6,15 +6,18 @@ import { Basic } from '../../pages';
 
 export const App = () => {
   return (<Routes>
-     <Route path={`/`} element={<Wrapper />}>
+     <Route path={`/table`} element={<Wrapper />}>
       <Route index element={<Generator />} />
-      <Route path={`/basic`} element={<Basic />} />
+      <Route path={`/table/basic`} element={<Basic />} />
       <Route path='*' element={<NoMatch />} />
      </Route>
      <Route
-        path="/generator"
-        element={<Navigate to={`/`} replace />}
+        path="/table/generator"
+        element={<Navigate to={`/table`} replace />}
       />
-     <Route path='*' element={<NoMatch />} />
+      <Route
+        path="/"
+        element={<Navigate to={`/table`} replace />}
+      />
   </Routes>);
 }
