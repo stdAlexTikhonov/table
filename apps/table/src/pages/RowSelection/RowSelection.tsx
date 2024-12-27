@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useCommon } from "../../hooks";
 
 import styles from './RowSelection.module.scss';
+import clsx from 'clsx';
 import IconButton from "@mui/material/IconButton";
 import Badge from '@mui/material/Badge';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
@@ -13,6 +14,7 @@ export const RowSelection = () => {
   const len = columns.length;
   const [hundred, setHundred] = useState(false);
   const [fixed, setFixed] = useState(false);
+  const [selected, setSelected] = useState(-1);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   const width = (len < 10 || hundred) ? '100%' : `${len * (100/count)}%`;
@@ -78,7 +80,7 @@ export const RowSelection = () => {
             </thead>
             <tbody>
               {
-                data.map((row, index) => <tr key={`row-${index}`}>
+                data.map((row, index) => <tr key={`row-${index}`} onClick={() => setSelected(index)} className={clsx(styles.row, index === selected && styles.selected)}>
                   {
                     columns.map((param, i) => <td className={styles.td} key={`col-${i}`}>{row[param]}</td>)
                   }
