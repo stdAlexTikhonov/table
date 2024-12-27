@@ -24,6 +24,7 @@ export enum Examples {
   Loading = "loading",
   Paggination = "paggination",
   RowSelection = "rowselection",
+  ColumnSelection = "columnselection",
   Size = "size",
   Translation = "translation",
   WithoutHeader = "withoutheader"
@@ -53,6 +54,7 @@ export const titles: Record<Examples, string> = {
   "paggination": "Paggination",
   "rowselection": "RowSelection",
   "size": "Size",
+  "columnselection": "ColumnSelection",
   "translation": "Translation",
   "withoutheader": "WithoutHeader"
 };
