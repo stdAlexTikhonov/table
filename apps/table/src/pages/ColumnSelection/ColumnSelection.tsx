@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCommon } from "../../hooks";
-
+import clsx from 'clsx';
 import styles from './ColumnSelection.module.scss';
 import IconButton from "@mui/material/IconButton";
 import Badge from '@mui/material/Badge';
@@ -14,6 +14,7 @@ export const ColumnSelection = () => {
   const [hundred, setHundred] = useState(false);
   const [fixed, setFixed] = useState(false);
   const [column, setColumn] = useState(-1);
+  const [selected, setSelected] = useState(-1);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   const width = (len < 10 || hundred) ? '100%' : `${len * (100/count)}%`;
@@ -70,9 +71,9 @@ export const ColumnSelection = () => {
       <div style={{ flexGrow: 1, height: 0 }}>
         <div className={styles.root}>
           <table className={styles.table} style={{ width, tableLayout: fixed ? 'fixed' : 'auto' }}>
-            <colgroup>
+          <colgroup>
               {
-                columns.map((item, index) => <col className={column === index ? styles.col : undefined} key={`col-${index}`} />)
+                columns.map((item, index) => <col className={clsx(selected === index && styles.selected, column === index && styles.col)} key={`col-${index}`} />)
               }
             </colgroup>
             <thead>
@@ -86,7 +87,15 @@ export const ColumnSelection = () => {
               {
                 data.map((row, index) => <tr key={`row-${index}`}>
                   {
-                    columns.map((param, i) => <td className={styles.td} key={`col-${i}`} onMouseEnter={() => setColumn(i)} onMouseLeave={() => setColumn(-1)}>{row[param]}</td>)
+                    columns.map((param, i) => <td
+                      className={styles.td}
+                      key={`col-${i}`}
+                      onMouseEnter={() => setColumn(i)}
+                      onMouseLeave={() => setColumn(-1)}
+                      onClick={() => setSelected(i)}
+                    >
+                      {row[param]}
+                    </td>)
                   }
                 </tr>)
               }
