@@ -92,7 +92,7 @@ export const ColumnSelection = () => {
                       key={`col-${i}`}
                       onMouseEnter={() => setColumn(i)}
                       onMouseLeave={() => setColumn(-1)}
-                      onClick={() => setSelected(i)}
+                      onClick={() => setSelected(i === selected ? -1 : i)}
                     >
                       {row[param]}
                     </td>)

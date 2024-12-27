@@ -80,7 +80,7 @@ export const RowSelection = () => {
             </thead>
             <tbody>
               {
-                data.map((row, index) => <tr key={`row-${index}`} onClick={() => setSelected(index)} className={clsx(styles.row, index === selected && styles.selected)}>
+                data.map((row, index) => <tr key={`row-${index}`} onClick={() => setSelected(selected === index ? -1 : index)} className={clsx(styles.row, index === selected && styles.selected)}>
                   {
                     columns.map((param, i) => <td className={styles.td} key={`col-${i}`}>{row[param]}</td>)
                   }
