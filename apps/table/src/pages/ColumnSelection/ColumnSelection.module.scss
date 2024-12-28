@@ -35,9 +35,12 @@
 
 .col {
   background-color: rgba(0, 0, 255, 0.2);
-  cursor: pointer;
 }
 
 .selected {
   background-color: rgba(0, 0, 255, 0.3);
+}
+
+.tr {
+  cursor: pointer;
 }

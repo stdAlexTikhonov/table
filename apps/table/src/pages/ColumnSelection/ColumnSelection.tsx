@@ -85,7 +85,7 @@ export const ColumnSelection = () => {
             </thead>
             <tbody>
               {
-                data.map((row, index) => <tr key={`row-${index}`}>
+                data.map((row, index) => <tr className={styles.tr} key={`row-${index}`}>
                   {
                     columns.map((param, i) => <td
                       className={styles.td}
