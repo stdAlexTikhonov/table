@@ -21,6 +21,7 @@
   border-collapse: collapse;
   table-layout: auto;
   width: 100%;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .count {
@@ -29,7 +30,7 @@
   width: 30;
 }
 
-.td, .th {
+.td {
   border: 1px solid;
 }
 
@@ -43,4 +44,33 @@
 
 .selected {
   background-color: rgba(0,0,255,0.3);
+}
+
+.th {
+  border-left: 1px solid;
+  border-right: 1px solid;
+  position: relative;
+  background-color: white;
+}
+
+.th::before, .th::after {
+  display: block;
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid black;
+}
+
+.th::after {
+  bottom: -1px;
+}
+
+.th::before {
+  top: 0;
+}
+
+thead {
+  position: sticky;
+  top: 0;
 }
