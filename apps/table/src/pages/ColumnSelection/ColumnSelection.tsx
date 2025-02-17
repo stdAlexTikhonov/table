@@ -73,7 +73,7 @@ export const ColumnSelection = () => {
           <table className={styles.table} style={{ width, tableLayout: fixed ? 'fixed' : 'auto' }}>
           <colgroup>
               {
-                columns.map((item, index) => <col className={clsx(selected === index && styles.selected, column === index && styles.col)} key={`col-${index}`} />)
+                columns.map((item, index) => <col className={clsx(selected === index  && column !== index && styles.selected, column === index && styles.col)} key={`col-${index}`} />)
               }
             </colgroup>
             <thead>
